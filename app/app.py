@@ -7,7 +7,7 @@ from routers.user import user_router
 server = FastAPI()
 
 
-@server.get("/status")
+@server.get("/status", tags=["functionality check"])
 def get_status():
     """Проверка работы сервиса"""
     return {"status": "Работаем"}

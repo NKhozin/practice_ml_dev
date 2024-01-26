@@ -11,7 +11,7 @@ from models import User, UserOut
 user_router = APIRouter()
 
 
-@user_router.post("/signup")
+@user_router.post("/signup", tags=["user"])
 async def create_user_signup(user: User):
     """Регистрация"""
     db_user = get_user_by_username(user.username)
@@ -27,7 +27,7 @@ async def create_user_signup(user: User):
     }
 
 
-@user_router.post("/signin")
+@user_router.post("/signin", tags=["user"])
 async def login_for_access_token(user: User):
     """Авторизация"""
     user = authenticate_user(user.username, user.password)
@@ -45,20 +45,20 @@ async def login_for_access_token(user: User):
     }
 
 
-@user_router.get("/change_balance/{amount}")
+@user_router.get("/change_balance/{amount}", tags=["user"])
 async def change_balance(amount: int, current_user: Annotated[User, Depends(get_current_user)]):
     """Изменение баланса пользователя"""
     response = change_user_balance(current_user.username, amount)
-    return {"success": "true", "current_user": current_user, "balance": response.balance}
+    return {"success": "true", "current_user": current_user, "balance": response['balance']}
 
 
-@user_router.get("/me")
+@user_router.get("/me", tags=["user"])
 async def read_users_me(current_user: Annotated[User, Depends(get_current_user)]):
     """Получения текущего пользователя"""
     return {"success": "true", "current_user": current_user}
 
 
-@user_router.get("/balance")
+@user_router.get("/balance", tags=["user"])
 async def show_user_balance(current_user: Annotated[User, Depends(get_current_user)]):
     """Получение баланса текущего пользователя"""
     return {"success": "true", "current_user": current_user, "balance:": current_user.balance}
