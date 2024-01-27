@@ -22,7 +22,7 @@ def get_random_state(my_string):
 
 
 def get_data(random_state):
-    """Функция получения данных. В простом ввиде считывается из csv"""
+    """Функция получения данных извне. В простом виде считывается из csv"""
     current_time = datetime.now()
 
     rounded_time = current_time - timedelta(minutes=current_time.minute % 10,
@@ -32,7 +32,7 @@ def get_data(random_state):
     date_list = [rounded_time - timedelta(minutes=x * 10) for x in range(1, 11)]
 
     data = (
-        pd.read_csv("C:/Users/User/PycharmProjects/pythonProject2/data/for_predict.csv", index_col=0)
+        pd.read_csv("", index_col=0)
         .sample(10, random_state=random_state)
         .round(1)
     )
