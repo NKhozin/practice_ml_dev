@@ -13,6 +13,5 @@
 Классификация осуществяется на выбор из трех моделей: CatBoost, RandomForestClassifier, KNeighborsClassifier.
 #### Пример работы сервиса
 ![Новый проект (1)](https://github.com/NKhozin/practice_ml_dev/assets/92330362/c16acb8a-50a2-4917-9bfd-f4cfa75495a5)
-
 #### Инструкции по запуску
 
